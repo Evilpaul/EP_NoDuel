@@ -1,0 +1,5 @@
+## Interface: 30100
+## Title: EP |cffDAFF8A[No Duel]|r
+## Author: EvilPaul
+## Notes: Automatically decline duel requests
+EP_NoDuel.lua
