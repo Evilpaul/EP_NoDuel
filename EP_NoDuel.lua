@@ -26,7 +26,7 @@ function EPNoDuel:DeclineDuel()
 	-- report to the user
 	self:MessageOutput(string.format("Declined duel with %s", arg1));
 
-	-- try and stop whispers across factions
+	-- only whisper if the same faction
 	local eMyFaction, _ = UnitFactionGroup("player");
 	local eTheirFaction, _ = UnitFactionGroup(arg1);
 
