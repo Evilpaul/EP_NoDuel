@@ -7,7 +7,7 @@ function EPNoDuel:MessageOutput(inputMessage)
 	ChatFrame1:AddMessage("|cffDAFF8A[No Duel]|r " .. inputMessage)
 end;
 
-function EPNoDuel:DUEL_REQUESTED(self, event, ...)
+function EPNoDuel:DeclineDuel()
 	-- Automatically cancel the duel
 	CancelDuel()
 
@@ -37,7 +37,7 @@ function EPNoDuel:DUEL_REQUESTED(self, event, ...)
 end
 
 EPNoDuel:SetScript("OnEvent", function(self, event, ...)
-	self[event](self, event, ...)
+	self:DeclineDuel()
 end)
 
 -- filter out our responses
