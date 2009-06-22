@@ -7,7 +7,8 @@ function EPNoDuel:MessageOutput(inputMessage)
 	ChatFrame1:AddMessage("|cffDAFF8A[No Duel]|r " .. inputMessage)
 end;
 
-function EPNoDuel:DeclineDuel()
+function EPNoDuel:DUEL_REQUESTED(event, originator)
+
 	-- Automatically cancel the duel
 	CancelDuel()
 
@@ -24,23 +25,23 @@ function EPNoDuel:DeclineDuel()
 	end
 
 	-- report to the user
-	self:MessageOutput(string.format("Declined duel with %s", arg1))
+	self:MessageOutput(string.format("Declined duel with %s", originator))
 
 	-- only whisper if the same faction
 	local eMyFaction, _ = UnitFactionGroup("player")
-	local eTheirFaction, _ = UnitFactionGroup(arg1)
+	local eTheirFaction, _ = UnitFactionGroup(originator)
 
 	if eMyFaction == eTheirFaction then
 		-- tell the idiot
-		SendChatMessage(duelDeclineMessage, "WHISPER", nil, arg1)
+		SendChatMessage(duelDeclineMessage, "WHISPER", nil, originator)
 	end
 end
 
 EPNoDuel:SetScript("OnEvent", function(self, event, ...)
-	self:DeclineDuel()
+	self[event](self, event, ...)
 end)
 
 -- filter out our responses
 ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER_INFORM", function(_, _, msg, _)
-	if msg == duelDeclineMessage then return true; end; -- filter out the reply whisper
+	if msg == duelDeclineMessage then return true end
 end)
