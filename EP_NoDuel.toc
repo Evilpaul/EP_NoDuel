@@ -3,9 +3,5 @@
 ## Notes: Automatically decline duel requests
 ## Author: EvilPaul
 ## Version: 1.1
-## DefaultState: enabled
-## X-website: http://github.com/Evilpaul
-## X-Localizations: enUS
-## X-Category: Battlegrounds/PvP
 
 EP_NoDuel.lua
