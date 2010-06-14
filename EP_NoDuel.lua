@@ -5,20 +5,16 @@ EPNoDuel:RegisterEvent('DUEL_REQUESTED')
 
 local duelDeclineMessage = 'This is an automated message, all duel requests will be declined'
 
-function EPNoDuel:MessageOutput(inputMessage)
-	ChatFrame1:AddMessage(format('|cffDAFF8A[No Duel]|r %s', inputMessage))
-end;
-
-function EPNoDuel:DUEL_REQUESTED(event, originator)
+EPNoDuel:SetScript('OnEvent', function(self, event, originator)
 	-- Automatically cancel the duel
 	CancelDuel()
 
-	local popup
 	-- The popup is shown, make sure it goes away
+	local popup
 	for i = 1, STATICPOPUP_NUMDIALOGS do
 		popup = _G['StaticPopup' .. i]
 
-		if popup and 
+		if popup and
 		   popup:IsVisible() and
 		   popup.which == 'DUEL_REQUESTED' then
 			popup:Hide()
@@ -26,7 +22,7 @@ function EPNoDuel:DUEL_REQUESTED(event, originator)
 	end
 
 	-- report to the user
-	self:MessageOutput(format('Declined duel with %s', originator))
+	DEFAULT_CHAT_FRAME:AddMessage(format('|cffDAFF8A[No Duel]|r Declined duel with %s', originator))
 
 	-- only whisper if the same faction
 	local eMyFaction, _ = UnitFactionGroup('player')
@@ -36,10 +32,6 @@ function EPNoDuel:DUEL_REQUESTED(event, originator)
 		-- tell the idiot
 		SendChatMessage(duelDeclineMessage, 'WHISPER', nil, originator)
 	end
-end
-
-EPNoDuel:SetScript('OnEvent', function(self, event, ...)
-	self[event](self, event, ...)
 end)
 
 -- filter out our responses
