@@ -3,5 +3,7 @@
 ## Notes: Automatically decline duel requests
 ## Author: EvilPaul
 ## Version: 1.1
+## LoadManagers: AddonLoader
+## X-LoadOn-Always: delayed
 
 EP_NoDuel.lua
