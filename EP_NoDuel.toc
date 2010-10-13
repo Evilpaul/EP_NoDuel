@@ -1,4 +1,4 @@
-## Interface: 30300
+## Interface: 40000
 ## Title: EP |cffDAFF8A[No Duel]|r
 ## Notes: Automatically decline duel requests
 ## Author: EvilPaul
